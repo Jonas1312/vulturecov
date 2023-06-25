@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from typing import Generator, Iterable
+from typing import Generator, Iterable, Union
 
 import click
 
@@ -40,7 +40,7 @@ def filter_vulture_lines(
 def main(
     cov_report: Path,
     vulture_report: Path,
-    output: Path | None = None,
+    output: Union[Path, None] = None,
     exit_1: bool = False,
 ) -> None:
     """Filter vulture report file."""
