@@ -4,7 +4,7 @@
 [![image](https://img.shields.io/pypi/pyversions/vulturecov.svg)](https://pypi.python.org/pypi/vulturecov)
 [![Actions status](https://github.com/Jonas1312/vulturecov/workflows/CI/badge.svg)](https://github.com/Jonas1312/vulturecov/actions)
 
-[**vulturecov**](https://github.com/Jonas1312/vulturecov) is a tool to filter the dead code false positives found by [Vulture](https://github.com/jendrikseipp/vulture) using [Coverage.py](https://coverage.readthedocs.io/e).
+[**vulturecov**](https://github.com/Jonas1312/vulturecov) is a tool to filter the dead code false positives found by [Vulture](https://github.com/jendrikseipp/vulture) using [Coverage.py](https://coverage.readthedocs.io/).
 
 The rationale is that if a line of code is covered by a test, then it is unlikely to be dead code.
 
