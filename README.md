@@ -1,8 +1,8 @@
 # [vulturecov](https://github.com/Jonas1312/vulturecov)
 
-[![image](https://img.shields.io/pypi/v/vulturecov.svg)](https://pypi.python.org/pypi/ruff)
-[![image](https://img.shields.io/pypi/pyversions/vulturecov.svg)](https://pypi.python.org/pypi/ruff)
-[![Actions status](https://github.com/Jonas1312/vulturecov/workflows/ci/badge.svg)](https://github.com/Jonas1312/vulturecov/actions)
+[![image](https://img.shields.io/pypi/v/vulturecov.svg)](https://pypi.python.org/pypi/vulturecov)
+[![image](https://img.shields.io/pypi/pyversions/vulturecov.svg)](https://pypi.python.org/pypi/vulturecov)
+[![Actions status](https://github.com/Jonas1312/vulturecov/workflows/CI/badge.svg)](https://github.com/Jonas1312/vulturecov/actions)
 
 [**vulturecov**](https://github.com/Jonas1312/vulturecov) is a tool to filter the dead code false positives found by [Vulture](https://github.com/jendrikseipp/vulture) using [Coverage.py](https://coverage.readthedocs.io/e).
 
