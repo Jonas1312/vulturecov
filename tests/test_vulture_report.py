@@ -22,7 +22,7 @@ from vulturecov.vulture_report import VultureReportLine
             11,
         ),
         (
-            "src/kili/entrypoints/mutations/organization/__init__.py:29: unused method 'create_organization' (60% confidence)",
+            "src/kili/entrypoints/mutations/organization/__init__.py:29: unused method 'create_organization' (60% confidence)",  # noqa: E501
             "src/kili/entrypoints/mutations/organization/__init__.py",
             29,
         ),
@@ -32,7 +32,7 @@ from vulturecov.vulture_report import VultureReportLine
             60,
         ),
         (
-            "src/kili/utils/labels/image.py:27: unused function 'mask_to_normalized_vertices' (60% confidence)",
+            "src/kili/utils/labels/image.py:27: unused function 'mask_to_normalized_vertices' (60% confidence)",  # noqa: E501
             "src/kili/utils/labels/image.py",
             27,
         ),
@@ -42,7 +42,7 @@ from vulturecov.vulture_report import VultureReportLine
             8,
         ),
         (
-            "GQL_GET_DATA_INTEGRATION_FOLDER_AND_SUBFOLDERS  # unused variable (src/kili/entrypoints/queries/data_integration/queries.py:3)",
+            "GQL_GET_DATA_INTEGRATION_FOLDER_AND_SUBFOLDERS  # unused variable (src/kili/entrypoints/queries/data_integration/queries.py:3)",  # noqa: E501
             "src/kili/entrypoints/queries/data_integration/queries.py",
             3,
         ),
