@@ -14,8 +14,7 @@ class VultureReportLine:
     def from_line(cls, line: str) -> "VultureReportLine":
         REGEX = r"^(?:.*?\()?(.+?):(\d+).*"
         match = re.search(REGEX, line)
-        if not match:
-            raise ValueError(f"Could not parse vulture line: {str}")
+        assert match, f"Could not parse vulture line: {line}"
 
         path = match.group(1)
         line_number = int(match.group(2))

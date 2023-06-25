@@ -6,24 +6,13 @@ from .vulture_report import VultureReportLine
 
 
 class AbstractCoverageReport(abc.ABC):
-    def __init__(self, cov_report_path: Path):
-        if not cov_report_path.exists():
-            raise FileNotFoundError(f"Could not find coverage report: {cov_report_path}")
-
-        self.cov_report_path = cov_report_path
-
     @abc.abstractmethod
     def is_line_in_cov_report(self, line: VultureReportLine) -> bool:
-        """Check if Vulture report line is in coverage report.
-
-        If yes, it is a false positive.
-        """
+        """Check if Vulture report line is in coverage report."""
 
 
 class CoverageReportJson(AbstractCoverageReport):
     def __init__(self, cov_report_path: Path):
-        super().__init__(cov_report_path)
-
         assert (
             cov_report_path.suffix == ".json"
         ), f"Coverage report must be a json file: {cov_report_path}"
