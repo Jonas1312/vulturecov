@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pytest_mock
 from click.testing import CliRunner
 
 from vulturecov.__main__ import main
@@ -84,3 +85,17 @@ src/kili/services/plugins/model.py:98: unused method 'on_custom_interface_click'
 """
     )
     Path(output_file).unlink(missing_ok=True)
+
+
+def test_cli_no_dead_code(mocker: pytest_mock.MockFixture):
+    mocker.patch("vulturecov.__main__.filter_vulture_lines", return_value=[])
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "tests/data/kili/vulture_normal_mode.txt",
+            "tests/data/kili/be84cc6b9fd4a990fa9eaa0dd26de22aaa15f9ff.json",
+        ],
+    )
+    assert result.exit_code == 0
+    assert "After filtering, no dead code was detected." in result.output

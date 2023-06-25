@@ -70,7 +70,3 @@ def main(
 
     if exit_1 and filtered_lines:
         sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()  # pylint: disable=no-value-for-parameter
