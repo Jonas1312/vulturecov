@@ -25,8 +25,7 @@ class VultureReportLine:
 def read_vulture(path: Path) -> Generator[str, None, None]:
     """Read vulture report line by line."""
     with Path(path).open("r", encoding="utf-8") as f:
-        for line in f:
-            yield line
+        yield from f
 
 
 def parse_and_read_vulture(path: Path) -> Generator[VultureReportLine, None, None]:
