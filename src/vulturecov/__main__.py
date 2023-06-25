@@ -59,6 +59,7 @@ def main(
     filtered_lines = list(filtered_lines)
 
     if not filtered_lines:
+        print("After filtering, no dead code was detected.")
         return
 
     if output is None:
@@ -70,7 +71,7 @@ def main(
             for line in filtered_lines:
                 f.write(line.raw_line)
 
-    if exit_1:
+    if exit_1 and filtered_lines:
         sys.exit(1)
 
 

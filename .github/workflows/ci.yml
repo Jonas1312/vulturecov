@@ -38,4 +38,4 @@ jobs:
           poetry install --with test
 
       - name: Unit tests
-        run: poetry run pytest -ra -sv --color yes --code-highlight yes --durations=15 -vv --cov=src/vulturecov --cov-report=term-missing --cov-fail-under=100 tests
+        run: poetry run pytest -ra -sv --color yes --code-highlight yes -vv --cov=src/vulturecov --cov-report=term-missing --cov-fail-under=100 tests
