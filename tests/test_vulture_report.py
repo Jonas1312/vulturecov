@@ -12,6 +12,16 @@ from vulturecov.vulture_report import VultureReportLine
             137,
         ),
         (
+            r"_.internal  # unused attribute (src\kili\client.py:137)",
+            r"src\kili\client.py",
+            137,
+        ),
+        (
+            r"src\vulturecov\cov_report.py:41: unused variable 'a' (60% confidence)",
+            r"src\vulturecov\cov_report.py",
+            41,
+        ),
+        (
             "src/kili/client.py:137: unused attribute 'internal' (60% confidence)",
             "src/kili/client.py",
             137,
