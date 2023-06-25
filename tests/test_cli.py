@@ -128,4 +128,4 @@ def test_cli_no_dead_code(mocker: pytest_mock.MockFixture):
         ],
     )
     assert result.exit_code == 0
-    assert "After filtering, no dead code was detected." in result.output
+    assert "Nothing to output." in result.output
