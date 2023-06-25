@@ -3,10 +3,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
         with:
           python-version: 3.11
@@ -16,3 +19,14 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install poetry
+
+      - name: build
+        run: poetry build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+      - name: check commit has tag
+        run: git describe --exact-match --tags HEAD
