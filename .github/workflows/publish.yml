@@ -23,10 +23,10 @@ jobs:
       - name: build
         run: poetry build
 
-      - name: Publish package distributions to test.pypi
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
+      #   - name: Publish package distributions to test.pypi
+      #     uses: pypa/gh-action-pypi-publish@release/v1
+      #     with:
+      #       repository-url: https://test.pypi.org/legacy/
 
       - name: check commit has tag
         run: git describe --exact-match --tags HEAD
