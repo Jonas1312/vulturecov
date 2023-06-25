@@ -44,14 +44,11 @@ def main(
     exit_1: bool = False,
 ) -> None:
     """Filter vulture report file."""
-    if not vulture_report.exists():
-        raise FileNotFoundError(f"Could not find vulture report: {vulture_report}")
+    assert vulture_report.exists(), f"Could not find vulture report: {vulture_report}"
 
-    if not cov_report.exists():
-        raise FileNotFoundError(f"Could not find coverage report: {cov_report}")
+    assert cov_report.exists(), f"Could not find coverage report: {cov_report}"
 
-    if not cov_report.suffix == ".json":
-        raise ValueError(f"Coverage report must be a json file: {cov_report}")
+    assert cov_report.suffix == ".json", f"Coverage report must be a json file: {cov_report}"
 
     vulture_lines_gen = parse_and_read_vulture(vulture_report)
 
