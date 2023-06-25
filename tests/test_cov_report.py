@@ -29,7 +29,7 @@ def test_is_line_in_cov_report_json(
 
 def test_is_line_in_cov_report_json_windows(mocker: pytest_mock.MockFixture) -> None:
     vulture_line = r"src\vulturecov\cov_report.py:41: unused variable 'a' (60% confidence)"
-    line = VultureReportLine.from_line(vulture_line)
+    line = VultureReportLine.from_str(vulture_line)
 
     mocker.patch.object(CoverageReportJson, "__init__", return_value=None)
 

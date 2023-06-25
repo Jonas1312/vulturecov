@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Generator
+from typing import Generator, Type
 
 
 @dataclass
@@ -11,7 +11,7 @@ class VultureReportLine:
     raw_line: str
 
     @classmethod
-    def from_line(cls, line: str) -> "VultureReportLine":
+    def from_str(cls: Type["VultureReportLine"], line: str) -> "VultureReportLine":
         REGEX = r"^(?:.*?\()?(.+?):(\d+).*"
         match = re.search(REGEX, line)
         assert match, f"Could not parse vulture line: {line}"
@@ -29,4 +29,4 @@ def read_vulture(path: Path) -> Generator[str, None, None]:
 
 def parse_and_read_vulture(path: Path) -> Generator[VultureReportLine, None, None]:
     """Parse vulture report line by line."""
-    yield from (VultureReportLine.from_line(line) for line in read_vulture(path))
+    yield from (VultureReportLine.from_str(line) for line in read_vulture(path))

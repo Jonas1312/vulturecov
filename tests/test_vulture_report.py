@@ -64,7 +64,7 @@ from vulturecov.vulture_report import VultureReportLine
     ),
 )
 def test_parse_vulture_line(line: str, filepath: str, line_number: int) -> None:
-    parsed_line = VultureReportLine.from_line(line)
+    parsed_line = VultureReportLine.from_str(line)
     assert parsed_line.raw_line == line
     assert parsed_line.src_filepath == filepath
     assert parsed_line.line_number == line_number
