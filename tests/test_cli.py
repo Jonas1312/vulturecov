@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pytest
 import pytest_mock
 from click.testing import CliRunner
 
@@ -36,6 +37,33 @@ src/kili/services/plugins/model.py:68: unused method 'on_review' (60% confidence
 src/kili/services/plugins/model.py:98: unused method 'on_custom_interface_click' (60% confidence)
 """
     )
+
+
+@pytest.mark.parametrize(
+    "vulture_report_filepath,output_contains",
+    (
+        (
+            "tests/data/kili/vulture_normal_mode.txt",
+            "src/kili/entrypoints/mutations/label/__init__.py:41: unused method 'create_predictions' (60% confidence)",
+        ),
+        (
+            "tests/data/kili/vulture_make_whitelist_mode.txt",
+            "_.create_predictions  # unused method (src/kili/entrypoints/mutations/label/__init__.py:41)",
+        ),
+    ),
+)
+def test_cli_stdout_print_false_positives(vulture_report_filepath: str, output_contains: str):
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            vulture_report_filepath,
+            "tests/data/kili/be84cc6b9fd4a990fa9eaa0dd26de22aaa15f9ff.json",
+            "--false-positives",
+        ],
+    )
+    assert result.exit_code == 0
+    assert output_contains in result.output
 
 
 def test_cli_stdout_exit_1():

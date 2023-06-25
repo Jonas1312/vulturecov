@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "vulturecov"
 version = "0.1.0"
-description = "Use your coverage report to remove Vulture false positives."
+description = "Vulture and Coverage.py combined: Find dead code in your Python project."
 license = "WTFPL"
 authors = ["Jonas Maison <Jonas1312@users.noreply.github.com>"]
 readme = "README.md"

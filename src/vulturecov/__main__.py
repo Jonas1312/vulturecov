@@ -9,10 +9,16 @@ from .vulture_report import VultureReportLine, parse_and_read_vulture
 
 
 def filter_vulture_lines(
-    lines: Iterable[VultureReportLine], cov_report: AbstractCoverageReport
+    lines: Iterable[VultureReportLine],
+    cov_report: AbstractCoverageReport,
+    remove_lines_in_cov_report: bool,
 ) -> Generator[VultureReportLine, None, None]:
     """Filter vulture report lines."""
-    return (line for line in lines if not cov_report.is_line_in_cov_report(line))
+    return (
+        line
+        for line in lines
+        if remove_lines_in_cov_report is not cov_report.is_line_in_cov_report(line)
+    )
 
 
 @click.command()
@@ -36,12 +42,19 @@ def filter_vulture_lines(
     help="Exit 1 when dead code is detected.",
     default=False,
 )
+@click.option(
+    "--false-positives",
+    is_flag=True,
+    help="Only show false positives in output.",
+    default=False,
+)
 @click.version_option()
 def main(
     cov_report: Path,
     vulture_report: Path,
     output: Union[Path, None] = None,
     exit_1: bool = False,
+    false_positives: bool = False,
 ) -> None:
     """Filter vulture report file."""
     assert vulture_report.exists(), f"Could not find vulture report: {vulture_report}"
@@ -50,7 +63,11 @@ def main(
 
     vulture_lines_gen = parse_and_read_vulture(vulture_report)
 
-    filtered_lines = filter_vulture_lines(vulture_lines_gen, CoverageReportJson(cov_report))
+    filtered_lines = filter_vulture_lines(
+        vulture_lines_gen,
+        CoverageReportJson(cov_report),
+        remove_lines_in_cov_report=not false_positives,
+    )
     filtered_lines = list(filtered_lines)
 
     if not filtered_lines:
