@@ -3,10 +3,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
     steps:
       - uses: actions/checkout@v3
 
@@ -26,13 +24,37 @@ jobs:
       - name: Build package
         run: poetry build
 
+      - name: Test installation
+        # install the package from dist with pip
+        run: pip install dist/*.whl
+
+      - name: Test package
+        run: vulturecov --help
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./dist
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+
+      - run: ls -l dist
+
+      - name: Check commit has tag
+        run: git describe --exact-match --tags HEAD
+
       - name: Publish package distributions to test.pypi
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-
-      - name: Check commit has tag
-        run: git describe --exact-match --tags HEAD
 
       - name: Publish package distributions to pypi
         uses: pypa/gh-action-pypi-publish@release/v1
