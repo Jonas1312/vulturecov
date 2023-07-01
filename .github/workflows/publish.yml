@@ -49,8 +49,7 @@ jobs:
           path: .
 
       - run: |
-          ls -l artifacts
-          ls -l artifacts/dist
+          ls -l dist
 
       - name: Check commit has tag
         run: git describe --exact-match --tags HEAD
