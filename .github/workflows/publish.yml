@@ -8,9 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get tags
-        run: git fetch --tags origin
-
       - uses: actions/setup-python@v4
         with:
           python-version: 3.11
@@ -25,11 +22,10 @@ jobs:
         run: poetry build
 
       - name: Test installation
-        # install the package from dist with pip
         run: pip install dist/*.whl
 
       - name: Test package
-        run: vulturecov --help
+        run: vulturecov --version
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -48,8 +44,12 @@ jobs:
           name: dist
           path: ./dist
 
+      - uses: actions/checkout@v3
+
       - name: Check commit has tag
-        run: git describe --exact-match --tags HEAD
+        run: |
+          git fetch --tags origin
+          git describe --exact-match --tags HEAD
 
       - name: Publish package distributions to test.pypi
         uses: pypa/gh-action-pypi-publish@release/v1
