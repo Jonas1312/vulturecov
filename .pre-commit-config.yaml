@@ -51,8 +51,3 @@ repos:
     rev: 1.6.1
     hooks:
      - id: poetry-check
-
-  - repo: https://github.com/rhysd/actionlint/
-    rev: v1.6.25
-    hooks:
-      - id: actionlint
