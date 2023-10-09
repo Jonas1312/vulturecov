@@ -6,7 +6,9 @@
 
 [**vulturecov**](https://github.com/Jonas1312/vulturecov) is a tool to filter the dead code false positives found by [Vulture](https://github.com/jendrikseipp/vulture) using [Coverage.py](https://coverage.readthedocs.io/).
 
-The rationale is that if a line of code is covered by a test, then it is unlikely to be dead code.
+Vulture is a static analysis tool that finds unused code in Python programs. However, since Vulture is a static code analyzer, it is likely to miss some dead code. Foe example, code that is only called implicitly may be reported as unused.
+
+Vulturecov uses Coverage.py to filter the dead code false positives found by Vulture: the rationale is that if a line of code is covered by a test, then it is unlikely to be dead code.
 
 ## Installation
 

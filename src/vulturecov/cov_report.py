@@ -12,7 +12,7 @@ class AbstractCoverageReport(abc.ABC):
 
 
 class CoverageReportJson(AbstractCoverageReport):
-    def __init__(self, cov_report_path: Path):
+    def __init__(self, cov_report_path: Path) -> None:
         assert (
             cov_report_path.suffix == ".json"
         ), f"Coverage report must be a json file: {cov_report_path}"

@@ -20,7 +20,7 @@ def test_cli_stdout():
     assert (
         result.output
         # ruff: noqa: E501
-        == """src/kili/core/graphql/graphql_client.py:311: unused attribute 'on_message' (60% confidence)
+        == r"""src/kili/core/graphql/graphql_client.py:311: unused attribute 'on_message' (60% confidence)
 src/kili/core/graphql/operations/lock/queries.py:8: unused class 'LockWhere' (60% confidence)
 src/kili/core/graphql/operations/lock/queries.py:23: unused class 'LockQuery' (60% confidence)
 src/kili/entrypoints/mutations/asset/__init__.py:168: unused variable 'priorities' (100% confidence)
@@ -97,7 +97,7 @@ def test_cli_to_file():
     assert (
         Path(output_file).read_text(encoding="utf-8")
         # ruff: noqa: E501
-        == """src/kili/core/graphql/graphql_client.py:311: unused attribute 'on_message' (60% confidence)
+        == r"""src/kili/core/graphql/graphql_client.py:311: unused attribute 'on_message' (60% confidence)
 src/kili/core/graphql/operations/lock/queries.py:8: unused class 'LockWhere' (60% confidence)
 src/kili/core/graphql/operations/lock/queries.py:23: unused class 'LockQuery' (60% confidence)
 src/kili/entrypoints/mutations/asset/__init__.py:168: unused variable 'priorities' (100% confidence)
